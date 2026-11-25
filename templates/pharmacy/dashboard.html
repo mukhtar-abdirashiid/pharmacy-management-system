@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="page-title mb-4">Pharmacy Dashboard</h2>
+<div class="row g-3 mb-4">
+ {% for label,value in stats %}{% endfor %}
+ <div class="col-md-3"><div class="card p-3"><div class="text-muted">Medicines</div><h2>{{ medicine_count }}</h2></div></div>
+ <div class="col-md-3"><div class="card p-3"><div class="text-muted">Categories</div><h2>{{ category_count }}</h2></div></div>
+ <div class="col-md-3"><div class="card p-3"><div class="text-muted">Customers</div><h2>{{ customer_count }}</h2></div></div>
+ <div class="col-md-3"><div class="card p-3"><div class="text-muted">Total sales</div><h2>{{ sales_total }}</h2></div></div>
+</div>
+<div class="row g-3">
+ <div class="col-lg-6"><div class="card p-3"><h5>Low stock (5 or fewer)</h5>
+ {% for m in low_stock %}<p class="mb-1">{{ m.name }} — {{ m.quantity }} left</p>{% empty %}<p class="text-muted">No low-stock medicines.</p>{% endfor %}
+ </div></div>
+ <div class="col-lg-6"><div class="card p-3"><h5>Expiring in the next 30 days</h5>
+ {% for m in expiring %}<p class="mb-1">{{ m.name }} — {{ m.expiry_date }}</p>{% empty %}<p class="text-muted">No medicines approaching expiry.</p>{% endfor %}
+ </div></div>
+</div>
+<div class="mt-4 d-flex gap-2 flex-wrap"><a class="btn btn-primary" href="{% url 'medicine_create' %}">+ Add medicine</a><a class="btn btn-success" href="{% url 'sale_create' %}">+ Record sale</a><a class="btn btn-outline-primary" href="{% url 'customer_create' %}">+ Add customer</a></div>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3"><h2 class="page-title">Customers</h2><a class="btn btn-primary" href="{% url 'customer_create' %}">+ Register customer</a></div>
+<div class="card p-3"><div class="table-responsive"><table class="table"><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Address</th><th>Actions</th></tr></thead><tbody>
+{% for c in customers %}<tr><td>{{ c.name }}</td><td>{{ c.phone }}</td><td>{{ c.email }}</td><td>{{ c.address }}</td><td><a href="{% url 'customer_update' c.pk %}">Edit</a> · <a class="text-danger" href="{% url 'customer_delete' c.pk %}">Delete</a></td></tr>{% empty %}<tr><td colspan="5">No customers registered.</td></tr>{% endfor %}
+</tbody></table></div></div>{% endblock %}

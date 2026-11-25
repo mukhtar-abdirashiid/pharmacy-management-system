@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3"><h2 class="page-title">Medicine Categories</h2><a class="btn btn-primary" href="{% url 'category_create' %}">+ Add category</a></div>
+<div class="card p-3"><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Name</th><th>Description</th><th>Actions</th></tr></thead><tbody>
+{% for c in categories %}<tr><td>{{ c.name }}</td><td>{{ c.description|default:"—" }}</td><td><a href="{% url 'category_update' c.pk %}">Edit</a> · <a class="text-danger" href="{% url 'category_delete' c.pk %}">Delete</a></td></tr>
+{% empty %}<tr><td colspan="3">No categories registered.</td></tr>{% endfor %}
+</tbody></table></div></div>{% endblock %}

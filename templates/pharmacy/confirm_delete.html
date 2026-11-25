@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}
+<div class="card p-4"><h3>Confirm deletion</h3><p>Are you sure you want to delete <strong>{{ object }}</strong>?</p>
+<form method="post">{% csrf_token %}<button class="btn btn-danger">Yes, delete</button> <a class="btn btn-secondary" href="{% url back %}">Cancel</a></form></div>
+{% endblock %}
